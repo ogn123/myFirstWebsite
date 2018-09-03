@@ -1,0 +1,43 @@
+{extend name="public/base" /}
+{block name="title"}
+    {$catename|default="吴家强"}--{$webInfo.webname}
+{/block}
+
+{block name="content"}
+<div class="jumbotron">
+    <h1 class="animated fadeInDown">This is a Test</h1>
+    <p class="animated shake">这是我自己开发的第一个网站，仅作为PHP后端学习。目前使用ThinkPHP5.1和Laravel5.5框架各开发一个，网站暂时只提供博文浏览功能，不用多久我就关了。</p>
+
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-8">
+        <div class="page-header h3">{$catename|default="文章列表"}</div>
+        <div class="article-list">
+            {volist name="articles" id="vo"}
+            <div class="article-list-item">
+                <a href="{:url('index/article/info',['id'=>$vo.id])}" class="title">{$vo.title}</a>
+                <div class="info">
+                    <span class="author">作者：{$vo.tags}</span>-
+                    <span class="time">发布时间：{$vo.create_time}</span>-
+                    <span class="read">阅读：666</span>
+                    <span class="comment">评论：666</span>
+                </div>
+        </div>
+            {/volist}
+        <nav class="">
+	    {$articles->render()|}
+        </nav>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <div class="page-header h3">推荐文章</div>
+        <div class="topic-list">
+            {volist name="topArticles" id="vo"}
+            <div class="topic-list-item">
+                <a href="{:url('index/article/info',['id'=>$vo.id])}" class="title">{$vo.title}</a>
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+</div>
+{/block}
